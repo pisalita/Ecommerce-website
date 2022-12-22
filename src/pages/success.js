@@ -25,7 +25,7 @@ export const Success = ({ categories, products }) => {
             order(s) please press the link below
           </p>
           <button
-            onClick={() => router.push("/orders")}
+            onClick={() => router.push("/orders", undefined, { shallow: true })}
             className="button mt-8"
           >
             My Orders

@@ -33,7 +33,7 @@ export const Header = ({ categories, products }) => {
             height={80}
             objectFit="cover"
             className="cursor-pointer"
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/", undefined, { shallow: true })}
           />
         </div>
 
@@ -45,7 +45,9 @@ export const Header = ({ categories, products }) => {
             onKeyPress={(e) => {
               if (e.key === "Enter")
                 router.push(
-                  `/?queryString=${searchInput.replaceAll(/[^a-zA-Z]/g, "")}`
+                  `/?queryString=${searchInput.replaceAll(/[^a-zA-Z]/g, "")}`,
+                  undefined,
+                  { shallow: true }
                 );
             }}
             onFocus={() => setSearchFocused(true)}
@@ -57,7 +59,9 @@ export const Header = ({ categories, products }) => {
             <MagnifyingGlassIcon
               onClick={() =>
                 router.push(
-                  `/?queryString=${searchInput.replaceAll(/[^a-zA-Z]/g, "")}`
+                  `/?queryString=${searchInput.replaceAll(/[^a-zA-Z]/g, "")}`,
+                  undefined,
+                  { shallow: true }
                 )
               }
               className="h-full p-2"
@@ -81,7 +85,9 @@ export const Header = ({ categories, products }) => {
                             `/?queryString=${suggestion.replaceAll(
                               /[^a-zA-Z]/g,
                               ""
-                            )}`
+                            )}`,
+                            undefined,
+                            { shallow: true }
                           )
                         }
                         className="link text-green"
@@ -107,7 +113,7 @@ export const Header = ({ categories, products }) => {
           <div
             onClick={() =>
               session
-                ? router.push("/orders")
+                ? router.push("/orders", undefined, { shallow: true })
                 : alert("Please login to see your orders")
             }
             className="link"
@@ -118,7 +124,9 @@ export const Header = ({ categories, products }) => {
           {/* Cart */}
           <div
             className="relative link flex items-center"
-            onClick={() => router.push("/checkout")}
+            onClick={() =>
+              router.push("/checkout", undefined, { shallow: true })
+            }
           >
             <span className="absolute top-0 right-0 md:right-6 h-4 w-4 bg-green text-center rounded-full text-black font-bold">
               {items.length}
@@ -139,7 +147,9 @@ export const Header = ({ categories, products }) => {
           <p
             onClick={() =>
               router.push(
-                `/?queryString=${category.replaceAll(/[^a-zA-Z]/g, "")}`
+                `/?queryString=${category.replaceAll(/[^a-zA-Z]/g, "")}`,
+                undefined,
+                { shallow: true }
               )
             }
             className="link"
