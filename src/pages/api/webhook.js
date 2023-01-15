@@ -2,9 +2,7 @@ import { buffer } from "micro";
 import * as admin from "firebase-admin";
 
 // Connect to firebase on the backend
-const serviceAccount = JSON.parse(
-  process.env.FIREBASE_SERVICE_ACCOUNT_KEY
-);
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
 
 const app = !admin.apps.length
   ? admin.initializeApp({
@@ -57,10 +55,11 @@ export default async (req, res) => {
 
       // add the order to our own database
       return addOrderToDB(session)
-        .then(() => res.status(200))
+        .then(() => res.status(200).send({ message: "success!" }))
         .catch((err) => res.status(400).send(`Webhook error: ${err.message}`));
     }
   }
+  res.send({ message: "Not a post request!" });
 };
 
 export const config = {

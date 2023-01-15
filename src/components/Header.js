@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import { selectItems } from "../slices/cartSlice";
 import { useSelector } from "react-redux";
 
-export const Header = ({ categories, products }) => {
+export const Header = ({ categories = [], products = [] }) => {
   const { data: session } = useSession();
   const router = useRouter();
   const items = useSelector(selectItems);
